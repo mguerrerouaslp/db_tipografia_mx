@@ -65,7 +65,7 @@ mysqli_close($conexion);
               <?php } ?>
 
                           <div class="designer-fullname"><?php echo $fila['name'];?> <?php echo $fila['lastname']; ?></div>
-                          <div class="cv"><?php echo $fila['cv_corto'];?></div>
+                          <div class="cv"><p><?php echo $fila['cv_corto'];?></p></div>
 </div><!-- // .desktop-7 -->
 
 <div class="clear"></div>
