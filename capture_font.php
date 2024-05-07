@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $studio = $_POST['studio'];
     $publisher = $_POST['publisher'];
     $client = $_POST['client'];
+    $event = $_POST['event'];
     $status = $_POST['status'];
     $url = $_POST['url'];
     $featured = $_POST['featured'];
@@ -72,9 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $urlArchivo = "uploads/fonts/" . basename($_FILES['uploadedfile']['name']);
 
                 // Insertar los datos en la tabla fonts
-            $consulta_insertar = "INSERT INTO fonts (userid, typo, year_reg, full_name, full_name_rol, full_name2, full_name2_rol, certif, sample, description, distribution, classification, vars_num, vars_name, format, num_characters, lang, type, studio, publisher, client, status, url, featured, keywords, date_recorded)
-                                 VALUES ('{$fila_perfil['id']}', '$typo', '$year_reg', '$full_name', '$full_name_rol', '$full_name2', '$full_name2_rol', '$certif', '$urlArchivo', '$description', '$distribution', '$classification', '$vars_num', '$vars_name', '$format', '$num_characters', '$lang', '$type', '$studio',
-                                   '$publisher', '$client', '$status', '$url', '$featured', '$keywords', '$date_recorded')";
+                $consulta_insertar = "INSERT INTO fonts (userid, typo, year_reg, full_name, full_name_rol, full_name2, full_name2_rol, certif, sample, description, distribution, classification, vars_num, vars_name, format, num_characters, lang, type, studio, publisher, client, event, status, url, featured, keywords, date_recorded)
+                    VALUES ('{$fila_perfil['id']}', '$typo', '$year_reg', '$full_name', '$full_name_rol', '$full_name2', '$full_name2_rol', '$certif', '$urlArchivo', '$description', '$distribution', '$classification', '$vars_num', '$vars_name', '$format', '$num_characters', '$lang', '$type', '$studio',
+                      '$publisher', '$client', '$event', '$status', '$url', '$featured', '$keywords', '$date_recorded')";
 
                                    if (mysqli_query($conexion, $consulta_insertar)) {
                                          $font_id = mysqli_insert_id($conexion);
@@ -250,6 +251,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- Campo de entrada para 'client' -->
                         <label for="client">Cliente:</label>
                         <input type="text" id="client" name="client">
+
+                        <!-- Campo de entrada para 'event' -->
+                        <label for="event">Evento:</label>
+                        <input type="text" id="event" name="event">
 
                         <!-- Campo de entrada para 'status' -->
                         <label for="status">Estado:</label>
