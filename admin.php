@@ -59,7 +59,7 @@ if ($rol_usuario === 'editor') {
                     <?php } elseif ($rol_usuario === 'autor') { ?>
                         <a href="profile">Revisa tu perfil</a><hr>
                         <a href="update_profile">Actualizar perfil</a><hr>
-                        <a href="capture_font">Registrar tipografía reconocida</a><hr>
+                        <a href="capture_font">Registrar tipografía</a><hr>
                     <?php } ?>
                     <a href="logout">Cerrar sesión</a><hr>
                 </div><!-- // .box-meta -->
