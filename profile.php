@@ -35,12 +35,15 @@ if (!$resultado_perfil) {
 $fila_perfil = mysqli_fetch_assoc($resultado_perfil);
 
 // Consulta para obtener los registros de la tabla fonts asociados al usuario
-$consulta_registros = "SELECT ID, typo, year_reg 
-                       FROM fonts 
-                       WHERE userid = (SELECT id FROM usuarios WHERE email = '$usuario') 
-                       AND draft <> 1 
-                       ORDER BY year_reg";
+$consulta_registros = "SELECT f.ID, f.typo, f.year_reg 
+                      FROM fonts_usuarios fu
+                      INNER JOIN fonts f ON fu.id_font = f.ID
+                      INNER JOIN usuarios u ON fu.id_usuario = u.id
+                      WHERE u.email = '$usuario' 
+                      AND f.draft <> 1 
+                      ORDER BY f.year_reg";
 $resultado_registros = mysqli_query($conexion, $consulta_registros);
+
 
 
 
