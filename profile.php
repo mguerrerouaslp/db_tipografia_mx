@@ -87,7 +87,6 @@ if (!$resultado_registros) {
                 <div class="desktop-7 tablet-12 columns">
                         <div class="box-content">
                             <h2><?php echo $fila_perfil['name'] . ' ' . $fila_perfil['lastname']; ?></h2>
-                            <p><?php echo $fila_perfil['email']; ?><br>
                             <?php echo $fila_perfil['ciudad']; ?><br></p>
                             <p><br><?php echo $fila_perfil['cv_corto']; ?></p>
                           </div><!-- // .desktop-9 -->
