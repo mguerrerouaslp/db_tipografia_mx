@@ -13,30 +13,32 @@ include 'conn.php';
 
 
 $error = '';
+$success_message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recuperar los datos del formulario
-    $award = $_POST['award'];
-    $cat_award = $_POST['cat_award'];
-    $full_name = $_POST['full_name'];
-    $typo_award = $_POST['typo_award'];
-    $year_award = $_POST['year_award'];
-    $source = $_POST['source'];
+    $award = $_POST['award'] ?? '';
+    $cat_award = $_POST['cat_award'] ?? '';
+    $full_name = $_POST['full_name'] ?? '';
+    $typo_award = $_POST['typo_award'] ?? '';
+    $year_award = $_POST['year_award'] ?? '';
+    $region = $_POST['region'] ?? '';
+    $source = $_POST['source'] ?? '';
 
-    // Verificar si la tipografía ya existe
-    $consulta_existencia = "SELECT * FROM fonts_award WHERE award = '$award' AND cat_award = '$cat_award' AND full_name = '$full_name' AND typo_award = '$typo_award' AND source = '$source'";
+    // Asegúrate de construir correctamente la consulta SQL
+    $consulta_existencia = "SELECT * FROM fonts_award WHERE award = '$award' AND cat_award = '$cat_award' AND full_name = '$full_name' AND typo_award = '$typo_award' AND source = '$source' AND region = '$region'";
     $resultado_existencia = mysqli_query($conexion, $consulta_existencia);
 
     if (mysqli_num_rows($resultado_existencia) > 0) {
         $error = "La tipografía '$full_name' ya ha sido registrada con este premio y año.";
     } else {
         // Insertar los datos en la base de datos
-        $consulta = "INSERT INTO fonts_award (award, cat_award, full_name, typo_award, year_award, source) VALUES ('$award', '$cat_award', '$full_name', '$typo_award', '$year_award', '$source')";
+        $consulta = "INSERT INTO fonts_award (award, cat_award, full_name, typo_award, year_award, source, region) VALUES ('$award', '$cat_award', '$full_name', '$typo_award', '$year_award', '$source', '$region')";
         if (mysqli_query($conexion, $consulta)) {
-            $success_message = "<div id=\"contact-success\">Tipografía registrada correctamente.</div>";
+            $success_message = "Tipografía registrada correctamente.";
         } else {
-          $error_message = "<div id=\"contact-warning\">Error al registrar la Tipografía</div>";
-}
+            $error = "Error al registrar la Tipografía";
+        }
     }
 }
 ?>
@@ -80,6 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         ?>
                             <label for="award">Premio:</label><br>
                             <input type="text" id="award" name="award" value="<?php echo $award; ?>"><br><br>
+
+                            <label for="region">Región:</label>
+                                <select id="region" name="region">
+                                    <option value="nacional">Nacional</option>
+                                    <option value="internacional">Internacional</option>
+                                </select>
 
                             <label for="cat_award">Categoría del premio:</label><br>
                             <input type="text" id="cat_award" name="cat_award" value="<?php echo $cat_award; ?>"><br><br>
