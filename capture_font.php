@@ -155,19 +155,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="postproduccion">Postproducción</label><br>
 
                         <!-- Campo de entrada para 'full_name2' -->
-                        <label for="full_name2">Colaboradores:</label>
+                        <label for="full_name2">Créditos:</label>
                         <input type="text" id="full_name2" name="full_name2"><br>
-
-                        <!-- Campo de entrada para 'full_name2_rol' -->
-                        <label for="full_name2_rol">Rol del diseñador (Colaboradores):</label><br>
-                        <input type="checkbox" id="diseno2" name="full_name2_rol[]" value="diseño">
-                        <label for="diseño2">Diseño</label>
-                        <input type="checkbox" id="scripting2" name="full_name2_rol[]" value="scripting">
-                        <label for="scripting2">Scripting</label>
-                        <input type="checkbox" id="hinting2" name="full_name2_rol[]" value="hinting">
-                        <label for="hinting2">Hinting</label>
-                        <input type="checkbox" id="postproduccion2" name="full_name2_rol[]" value="postproducción">
-                        <label for="postproduccion2">Postproducción</label><br><br>
 
                         <!-- Campo de entrada para 'sample' (para cargar la imagen) -->
                         <label for="uploadedfile">Muestra:</label>
@@ -209,13 +198,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- Campo de entrada para 'format' -->
                         <label>Formato:</label>
                         <input type="checkbox" id="ttf" name="format[]" value="ttf">
-                        <label for="ttf">TTF</label>
+                        <label for="ttf">ttf</label>
                         <input type="checkbox" id="otf" name="format[]" value="otf">
-                        <label for="otf">OTF</label>
-                        <input type="checkbox" id="vf" name="format[]" value="vf">
-                        <label for="vf">VF</label>
+                        <label for="otf">otf</label>
+                        <input type="checkbox" id="ttf-v" name="format[]" value="ttf (variable)">
+                        <label for="ttf-v">ttf-variable</label>
                         <input type="checkbox" id="woff" name="format[]" value="woff">
-                        <label for="woff">WOFF</label><br>
+                        <label for="woff">woff</label>
+                        <input type="checkbox" id="woff2" name="format[]" value="woff2">
+                        <label for="woff">woff2</label>
+                        <input type="checkbox" id="woff2-v" name="format[]" value="woff2 (variable)">
+                        <label for="woff2-v">woff2-variable</label><br>
 
                         <label for="axes_num">Variable axis:</label>
                         <input type="text" id="axes_num" name="axes_num" >
