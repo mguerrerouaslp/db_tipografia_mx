@@ -15,7 +15,7 @@ $consulta = "SELECT fu.*, CONCAT(u.name, ' ', u.lastname) AS designer_name,
              LEFT JOIN fonts f ON fu.id_font = f.id
              LEFT JOIN foundries ON fu.id_foundrie = foundries.id
              WHERE f.draft != 1 AND u.country ='México'
-             ORDER BY designer_name";
+             ORDER BY designer_name, f.year_reg";
 
 // Ejecutar la consulta
 $resultado = mysqli_query($conexion, $consulta);
