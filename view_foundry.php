@@ -55,8 +55,14 @@ mysqli_close($conexion);
 
                           <div class="designer-fullname"><?php echo $fila['name'];?></div>
                           <p><?php echo $fila['description'];?></p>
-                          <p><b>Ciudad </b><?php echo $fila['ciudad'];?><br>
-                          <b>Website </b><a href="<?php echo $fila['sitio_web'];?>" target="_blank"><?php echo $fila['sitio_web'];?></a></p>
+                          <p><?php echo $fila['ciudad'];?><br>
+                          <?php
+                              if ($fila['status'] == 'no activo') {
+                                  echo '<a href="' . $fila['sitio_web'] . '" target="_blank">' . $fila['sitio_web'] . '</a>';
+                              } else {
+                                  echo 'Fundidora no activa <br><del>' . $fila['sitio_web'] . '</del>';
+                              }
+                          ?>
 
 </div><!-- // .desktop-7 -->
 
