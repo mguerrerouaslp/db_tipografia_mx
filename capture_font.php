@@ -251,10 +251,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- Campo de entrada para 'status' -->
                         <label for="status">Estado:</label>
                         <select id="status" name="status" required>
-                            <option value="disponible">Disponible</option>
-                            <option value="no_disponible">No disponible</option>
+                            <option value="disponible">disponible</option>
+                            <option value="no_disponible">no disponible</option>
                         </select><br>
-
+                        
                         <!-- Campo de entrada para 'url' -->
                         <label for="url">URL:</label>
                         <input type="url" id="url" name="url">
