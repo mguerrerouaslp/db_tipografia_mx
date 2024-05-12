@@ -76,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $consulta_insertar = "INSERT INTO fonts (userid, typo, year_reg, full_name, full_name_rol, full_name2, full_name2_rol, certif, sample, description, distribution, classification, vars_num, vars_name, format, num_characters, lang, type, studio, publisher, client, event, status, url, featured, keywords, date_recorded)
                     VALUES ('{$fila_perfil['id']}', '$typo', '$year_reg', '$full_name', '$full_name_rol', '$full_name2', '$full_name2_rol', '$certif', '$urlArchivo', '$description', '$distribution', '$classification', '$vars_num', '$vars_name', '$format', '$num_characters', '$lang', '$type', '$studio',
                       '$publisher', '$client', '$event', '$status', '$url', '$featured', '$keywords', '$date_recorded')";
-
                                    if (mysqli_query($conexion, $consulta_insertar)) {
                                          $font_id = mysqli_insert_id($conexion);
 
@@ -195,18 +194,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="vars_num">Estilos tipográficos:</label>
                         <input type="text" id="vars_num" name="vars_num" required>
 
-                        <!-- Campo de entrada para 'format' -->
                         <label>Formato:</label>
                         <input type="checkbox" id="ttf" name="format[]" value="ttf">
                         <label for="ttf">ttf</label>
                         <input type="checkbox" id="otf" name="format[]" value="otf">
                         <label for="otf">otf</label>
-                        <input type="checkbox" id="ttf-v" name="format[]" value="ttf (variable)">
-                        <label for="ttf-v">ttf-variable</label>
                         <input type="checkbox" id="woff" name="format[]" value="woff">
                         <label for="woff">woff</label>
                         <input type="checkbox" id="woff2" name="format[]" value="woff2">
-                        <label for="woff">woff2</label>
+                        <label for="woff">woff2</label><br>
+                        <input type="checkbox" id="ttf-v" name="format[]" value="ttf (variable)">
+                        <label for="ttf-v">ttf-variable</label>
                         <input type="checkbox" id="woff2-v" name="format[]" value="woff2 (variable)">
                         <label for="woff2-v">woff2-variable</label><br>
 
@@ -249,11 +247,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="event">Evento:</label>
                         <input type="text" id="event" name="event">
 
+
                         <!-- Campo de entrada para 'status' -->
                         <label for="status">Estado:</label>
                         <select id="status" name="status" required>
-                            <option value="publicado">Publicado</option>
-                            <option value="no_publicado">No publicado</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="no_disponible">No disponible</option>
                         </select><br>
 
                         <!-- Campo de entrada para 'url' -->
@@ -267,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- Campo de entrada para 'keywords' -->
                         <label for="keywords">Palabras clave (separadas por coma):</label>
                         <input type="text" id="keywords" name="keywords">
-                       
+
                         <!-- Botón de envío -->
                         <input type="submit" name="submit" class="button full" value="Registrar">
                         </fieldset>
