@@ -9,7 +9,7 @@ if (!$conexion) {
 
 // Consulta SQL para obtener los datos de la tabla fonts_usuarios junto con el nombre y apellido del usuario y otros campos relacionados, ordenados por nombre completo
 $consulta = "SELECT fu.*, CONCAT(u.name, ' ', u.lastname) AS designer_name,
-             f.id, f.typo, f.year_reg, f.vars_num, f.classification, f.distribution, foundries.name AS foundry_name, f.url, f.verif
+             f.id, f.typo, f.year_reg, f.vars_num, f.classification, f.distribution, f.publisher, f.foundry_id, foundries.name AS foundry_name, f.url, f.verif
              FROM fonts_usuarios fu
              LEFT JOIN usuarios u ON fu.id_usuario = u.id
              LEFT JOIN fonts f ON fu.id_font = f.id
@@ -67,7 +67,13 @@ $total_registros = mysqli_num_rows($resultado);
         <td><?php echo $fila['vars_num']; ?></td>
         <td><?php echo $fila['classification']; ?></td>
         <td><?php echo $fila['distribution']; ?></td>
-        <td><?php echo $fila['foundry_name']; ?></td>
+        <td>
+            <?php if (!empty($fila['foundry_id'])): ?>
+                <a href="view_foundry.php?id=<?php echo $fila['foundry_id']; ?>";? target="_blank"><?php echo $fila['publisher']; ?></a>
+            <?php else: ?>
+                <?php echo $fila['publisher']; ?>
+            <?php endif; ?>
+        </td>
         <td><a href="<?php echo $fila['url']; ?>" target="_blank">Enlace</a></td>
         <td><?php echo $fila['verif'] == 1 ? "<i class='bi bi-check-lg'></i>" : "-"; ?></td>
     </tr>
