@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $publisher = $_POST['publisher'];
     $client = $_POST['client'];
     $event = $_POST['event'];
-    $status = $_POST['status'];
     $url = $_POST['url'];
     $featured = $_POST['featured'];
     $keywords = $_POST['keywords'];
@@ -73,9 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $urlArchivo = "uploads/fonts/" . basename($_FILES['uploadedfile']['name']);
 
                 // Insertar los datos en la tabla fonts
-                $consulta_insertar = "INSERT INTO fonts (userid, typo, year_reg, full_name, full_name_rol, full_name2, full_name2_rol, certif, sample, description, distribution, classification, vars_num, vars_name, format, num_characters, lang, type, studio, publisher, client, event, status, url, featured, keywords, date_recorded)
+                $consulta_insertar = "INSERT INTO fonts (userid, typo, year_reg, full_name, full_name_rol, full_name2, full_name2_rol, certif, sample, description, distribution, classification, vars_num, vars_name, format, num_characters, lang, type, studio, publisher, client, event, url, featured, keywords, date_recorded)
                     VALUES ('{$fila_perfil['id']}', '$typo', '$year_reg', '$full_name', '$full_name_rol', '$full_name2', '$full_name2_rol', '$certif', '$urlArchivo', '$description', '$distribution', '$classification', '$vars_num', '$vars_name', '$format', '$num_characters', '$lang', '$type', '$studio',
-                      '$publisher', '$client', '$event', '$status', '$url', '$featured', '$keywords', '$date_recorded')";
+                      '$publisher', '$client', '$event', '$url', '$featured', '$keywords', '$date_recorded')";
                                    if (mysqli_query($conexion, $consulta_insertar)) {
                                          $font_id = mysqli_insert_id($conexion);
 
@@ -124,153 +123,153 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-                        <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                        <fieldset>
-                        <?php
-                          if (isset($success_message)) {
-                              echo $success_message;
-                          }
-                          if (isset($error_message)) {
-                              echo $error_message;
-                          }
-                      ?>
-                        <!-- Campo de entrada para 'typo' -->
-                        <br><label for="typo">Nombre de la tipografía:</label><br>
-                        <input type="text" id="typo" name="typo" required><br>
+                      <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                          <fieldset>
+                              <?php
+                              if (isset($success_message)) {
+                                  echo $success_message;
+                              }
+                              if (isset($error_message)) {
+                                  echo $error_message;
+                              }
+                              ?>
 
-                        <!-- Campo de entrada para 'year_reg' -->
-                        <label for="year_reg">Año de registro:</label>
-                        <input type="text" id="year_reg" name="year_reg" required><br>
+                              <!-- Campo de entrada para 'typo' -->
+                              <br><label for="typo">Nombre de la tipografía:</label><br>
+                              <input type="text" id="typo" name="typo" required><br>
 
-                        <!-- Campo de entrada para 'full_name_rol' -->
-                        <label for="full_name_rol">Rol del diseñador:</label>
-                        <input type="checkbox" id="diseno" name="full_name_rol[]" value="diseño" required>
-                        <label for="diseño">Diseño</label>
-                        <input type="checkbox" id="scripting" name="full_name_rol[]" value="scripting">
-                        <label for="scripting">Scripting</label>
-                        <input type="checkbox" id="hinting" name="full_name_rol[]" value="hinting">
-                        <label for="hinting">Hinting</label>
-                        <input type="checkbox" id="postproduccion" name="full_name_rol[]" value="postproducción">
-                        <label for="postproduccion">Postproducción</label><br>
+                              <!-- Campo de entrada para 'year_reg' -->
+                              <label for="year_reg">Año de registro:</label>
+                              <input type="text" id="year_reg" name="year_reg" required><br>
 
-                        <!-- Campo de entrada para 'full_name2' -->
-                        <label for="full_name2">Créditos:</label>
-                        <input type="text" id="full_name2" name="full_name2"><br>
+                              <!-- Campo de entrada para 'full_name_rol' -->
+                              <label for="full_name_rol">Rol del diseñador:</label>
+                              <input type="checkbox" id="diseno" name="full_name_rol[]" value="diseño" >
+                              <label for="diseno">Diseño</label>
+                              <input type="checkbox" id="scripting" name="full_name_rol[]" value="scripting">
+                              <label for="scripting">Scripting</label>
+                              <input type="checkbox" id="hinting" name="full_name_rol[]" value="hinting">
+                              <label for="hinting">Hinting</label>
+                              <input type="checkbox" id="postproduccion" name="full_name_rol[]" value="postproducción">
+                              <label for="postproduccion">Postproducción</label><br>
 
-                        <!-- Campo de entrada para 'sample' (para cargar la imagen) -->
-                        <label for="uploadedfile">Muestra:</label>
-                        <input type="file" name="uploadedfile" id="uploadedfile"><br><br>
-                        <!-- Campo de entrada para 'description' -->
-                        <label for="description">Descripción:</label>
-                        <textarea id="description" name="description" rows="5" cols="50"></textarea>
+                              <!-- Campo de entrada para 'full_name2' -->
+                              <label for="full_name2">Créditos:</label>
+                              <input type="text" id="full_name2" name="full_name2"><br>
 
-                        <!-- Campo de entrada para 'distribution' -->
-                        <label for="distribution">Distribución:</label>
-                        <input type="checkbox" id="retail" name="distribution[]" value="Retail">
-                        <label for="retail">Retail</label>
-                        <input type="checkbox" id="custom" name="distribution[]" value="Custom">
-                        <label for="custom">Custom</label>
-                        <input type="checkbox" id="open_source" name="distribution[]" value="Open Source">
-                        <label for="open_source">Open Source</label><br>
-                        <input type="checkbox" id="gratuita" name="distribution[]" value="Gratuita">
-                        <label for="gratuita">Gratuita</label><br>
+                              <!-- Campo de entrada para 'sample' (para cargar la imagen) -->
+                              <label for="uploadedfile">Muestra:</label>
+                              <input type="file" name="uploadedfile" id="uploadedfile"><br><br>
 
-                        <!-- Campo de entrada para 'classification' -->
-                        <label for="classification">Clasificación:</label>
-                        <select id="classification" name="classification" required>
-                            <option value="Texto">Texto</option>
-                            <option value="Títulos">Títulos</option>
-                            <option value="Script">Script</option>
-                            <option value="Experimental">Experimental</option>
-                            <option value="Dingbats">Dingbats</option>
-                            <option value="Patterns">Patterns</option>
-                        </select>
+                              <!-- Campo de entrada para 'description' -->
+                              <label for="description">Descripción:</label>
+                              <textarea id="description" name="description" rows="5" cols="50"></textarea>
 
-                        <!-- Campo de entrada para 'vars_name' -->
-                        <label for="vars_name">Familia(s):</label>
-                        <input type="text" id="vars_name" name="vars_name" required>
+                              <!-- Campo de entrada para 'distribution' -->
+                              <label for="distribution">Distribución:</label>
+                              <input type="checkbox" id="abierto" name="distribution[]" value="abierto">
+                              <label for="abierto">Acceso abierto</label>
+                              <input type="checkbox" id="gratuito" name="distribution[]" value="gratuito">
+                              <label for="gratuito">Acceso gratuito</label><br>
+                              <input type="checkbox" id="publico" name="distribution[]" value="público con costo">
+                              <label for="publico">Acceso público con costo</label>
+                              <input type="checkbox" id="privado" name="distribution[]" value="privado">
+                              <label for="privado">Acceso privado</label><br>
+                              <input type="checkbox" id="limitado" name="distribution[]" value="limitado">
+                              <label for="limitado">Acceso limitado</label>
+                              <input type="checkbox" id="no_disponible" name="distribution[]" value="no disponible">
+                              <label for="no_disponible">Acceso no disponible</label><br>
 
-                        <!-- Campo de entrada para 'vars_num' -->
-                        <label for="vars_num">Estilos tipográficos:</label>
-                        <input type="text" id="vars_num" name="vars_num" required>
+                              <!-- Campo de entrada para 'classification' -->
+                              <label for="classification">Clasificación:</label>
+                              <select id="classification" name="classification" required>
+                                  <option value="Texto">Texto</option>
+                                  <option value="Títulos">Títulos</option>
+                                  <option value="Script">Script</option>
+                                  <option value="Experimental">Experimental</option>
+                                  <option value="Dingbats">Dingbats</option>
+                                  <option value="Patterns">Patterns</option>
+                              </select>
 
-                        <label>Formato:</label>
-                        <input type="checkbox" id="ttf" name="format[]" value="ttf">
-                        <label for="ttf">ttf</label>
-                        <input type="checkbox" id="otf" name="format[]" value="otf">
-                        <label for="otf">otf</label>
-                        <input type="checkbox" id="woff" name="format[]" value="woff">
-                        <label for="woff">woff</label>
-                        <input type="checkbox" id="woff2" name="format[]" value="woff2">
-                        <label for="woff">woff2</label><br>
-                        <input type="checkbox" id="ttf-v" name="format[]" value="ttf (variable)">
-                        <label for="ttf-v">ttf-variable</label>
-                        <input type="checkbox" id="woff2-v" name="format[]" value="woff2 (variable)">
-                        <label for="woff2-v">woff2-variable</label><br>
+                              <!-- Campo de entrada para 'vars_name' -->
+                              <label for="vars_name">Familia(s):</label>
+                              <input type="text" id="vars_name" name="vars_name" required>
 
-                        <label for="axes_num">Variable axis:</label>
-                        <input type="text" id="axes_num" name="axes_num" >
+                              <!-- Campo de entrada para 'vars_num' -->
+                              <label for="vars_num">Estilos tipográficos:</label>
+                              <input type="text" id="vars_num" name="vars_num" required>
 
-                        <!-- Campo de entrada para 'num_characters' -->
-                        <label for="num_characters">Número de caracteres:</label>
-                        <select id="num_characters" name="num_characters" required>
-                            <option value="entre 256 - 1000">Menor que 256</option>
-                            <option value="entre 256 - 1000">Entre 256 y 1000</option>
-                            <option value="entre 256 - 1000">Mayor que 1000</option>
-                        </select>
+                              <!-- Campo de entrada para 'format' -->
+                              <label>Formato:</label>
+                              <input type="checkbox" id="ttf" name="format[]" value="ttf">
+                              <label for="ttf">ttf</label>
+                              <input type="checkbox" id="otf" name="format[]" value="otf">
+                              <label for="otf">otf</label>
+                              <input type="checkbox" id="woff" name="format[]" value="woff">
+                              <label for="woff">woff</label>
+                              <input type="checkbox" id="woff2" name="format[]" value="woff2">
+                              <label for="woff2">woff2</label><br>
+                              <input type="checkbox" id="ttf-v" name="format[]" value="ttf (variable)">
+                              <label for="ttf-v">ttf-variable</label>
+                              <input type="checkbox" id="woff2-v" name="format[]" value="woff2 (variable)">
+                              <label for="woff2-v">woff2-variable</label><br>
 
-                        <!-- Campo de entrada para 'type' -->
-                        <label for="type">Set tipográfico:</label>
-                        <select id="type" name="type" required>
-                            <option value="Básico">Básico</option>
-                            <option value="Extendido">Extendido</option>
-                            <option value="Especializado">Especializado</option>
-                        </select><br>
+                              <!-- Campo de entrada para 'axes_num' -->
+                              <label for="axes_num">Variable axis:</label>
+                              <input type="text" id="axes_num" name="axes_num">
 
-                        <!-- Campo de entrada para 'lang' -->
-                        <label for="lang">Lenguajes:</label>
-                        <input type="text" id="lang" name="lang">
+                              <!-- Campo de entrada para 'num_characters' -->
+                              <label for="num_characters">Número de caracteres:</label>
+                              <select id="num_characters" name="num_characters" required>
+                                  <option value="menor que 256">Menor que 256</option>
+                                  <option value="entre 256 - 1000">Entre 256 y 1000</option>
+                                  <option value="mayor que 1000">Mayor que 1000</option>
+                              </select>
 
-                        <!-- Campo de entrada para 'studio' -->
-                        <label for="studio">Estudio:</label>
-                        <input type="text" id="studio" name="studio">
+                              <!-- Campo de entrada para 'type' -->
+                              <label for="type">Set tipográfico:</label>
+                              <select id="type" name="type" required>
+                                  <option value="Básico">Básico</option>
+                                  <option value="Extendido">Extendido</option>
+                                  <option value="Especializado">Especializado</option>
+                              </select><br>
 
-                        <!-- Campo de entrada para 'publisher' -->
-                        <label for="publisher">Fundidora:</label>
-                        <input type="text" id="publisher" name="publisher">
+                              <!-- Campo de entrada para 'lang' -->
+                              <label for="lang">Lenguajes:</label>
+                              <input type="text" id="lang" name="lang">
 
-                        <!-- Campo de entrada para 'client' -->
-                        <label for="client">Cliente:</label>
-                        <input type="text" id="client" name="client">
+                              <!-- Campo de entrada para 'studio' -->
+                              <label for="studio">Estudio:</label>
+                              <input type="text" id="studio" name="studio">
 
-                        <!-- Campo de entrada para 'event' -->
-                        <label for="event">Evento:</label>
-                        <input type="text" id="event" name="event">
+                              <!-- Campo de entrada para 'publisher' -->
+                              <label for="publisher">Fundidora:</label>
+                              <input type="text" id="publisher" name="publisher">
 
+                              <!-- Campo de entrada para 'client' -->
+                              <label for="client">Cliente:</label>
+                              <input type="text" id="client" name="client">
 
-                        <!-- Campo de entrada para 'status' -->
-                        <label for="status">Estado:</label>
-                        <select id="status" name="status" required>
-                            <option value="disponible">disponible</option>
-                            <option value="no_disponible">no disponible</option>
-                        </select><br>
-                        
-                        <!-- Campo de entrada para 'url' -->
-                        <label for="url">URL:</label>
-                        <input type="url" id="url" name="url">
+                              <!-- Campo de entrada para 'event' -->
+                              <label for="event">Evento:</label>
+                              <input type="text" id="event" name="event">
 
-                        <!-- Campo de entrada para 'featured' -->
-                        <label for="featured">Reconocimientos:</label>
-                        <input type="text" id="featured" name="featured">
+                              <!-- Campo de entrada para 'url' -->
+                              <label for="url">URL:</label>
+                              <input type="url" id="url" name="url">
 
-                        <!-- Campo de entrada para 'keywords' -->
-                        <label for="keywords">Palabras clave (separadas por coma):</label>
-                        <input type="text" id="keywords" name="keywords">
+                              <!-- Campo de entrada para 'featured' -->
+                              <label for="featured">Reconocimientos:</label>
+                              <input type="text" id="featured" name="featured">
 
-                        <!-- Botón de envío -->
-                        <input type="submit" name="submit" class="button full" value="Registrar">
-                        </fieldset>
-                    </form>
+                              <!-- Campo de entrada para 'keywords' -->
+                              <label for="keywords">Palabras clave (separadas por coma):</label>
+                              <input type="text" id="keywords" name="keywords">
+
+                              <!-- Botón de envío -->
+                              <input type="submit" name="submit" class="button full" value="Registrar">
+                          </fieldset>
+                      </form>
                   </div><!-- // .box-content -->
 
           </div><!-- // .desktop-9 -->
